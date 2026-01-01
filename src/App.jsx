@@ -5,6 +5,7 @@ import About from './components/About'
 import Pricing from './components/Pricing'
 import Booking from './components/Booking'
 import Footer from './components/Footer'
+import FAQ from './components/FAQ'; // Import ist da, super!
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <About />
         <Pricing />
         <Booking />
+        {/* HIER MUSSTE DIE FAQ HIN, DAMIT SIE AUF DER SEITE ERSCHEINT */}
+        <FAQ /> 
       </main>
       <Footer />
     </div>

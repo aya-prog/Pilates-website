@@ -7,6 +7,11 @@
   
   body {
     @apply bg-white text-gray-900 font-sans;
+    /* ENTFERNT: display: flex und place-items: center */
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden; /* Verhindert seitliches Scrollen */
   }
 }
 
@@ -23,6 +28,7 @@
     @apply inline-flex items-center justify-center px-8 py-3.5 border-2 border-pink-600 text-pink-600 rounded-full font-semibold hover:bg-pink-600 hover:text-white transition-all duration-300;
   }
   
+  /* Das ist deine wichtigste Klasse zum Zentrieren von Inhalten */
   .section-container {
     @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
@@ -35,21 +41,76 @@
     @apply text-3xl sm:text-4xl font-bold tracking-tight text-center;
   }
 }
-a:hover {
-  color: #535bf2;
-}
 
-body {
+/* Diese ID ist wichtig für React-Apps (Vite Standard) */
+#root {
+  width: 100%;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
 }
 
+.App {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Den restlichen Standard-Code aufräumen */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+@layer utilities {
+  @keyframes logo-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px 2px rgba(219, 39, 119, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 20px 6px rgba(219, 39, 119, 0.6);
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-logo-glow {
+    animation: logo-glow 3s infinite ease-in-out;
+  }
+}
+
+@layer utilities {
+  /* Für Ganzheitlich: Ein sanftes Ausdehnen (wie Atmen) */
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.9; }
+  }
+
+  /* Für Community: Ein leichtes seitliches Schwingen */
+  @keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  /* Für Wellness: Der klassische Herzschlag */
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    10% { transform: scale(1.15); }
+    20% { transform: scale(1); }
+    30% { transform: scale(1.15); }
+  }
+
+  /* Für Modern & Dynamisch: Ein kleiner Energie-Schüttler */
+  @keyframes energy {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-3px) translateX(1px); }
+    75% { transform: translateY(3px) translateX(-1px); }
+  }
+
+  .animate-breathe { animation: breathe 4s infinite ease-in-out; }
+  .animate-sway { animation: sway 3s infinite ease-in-out; }
+  .animate-heartbeat { animation: heartbeat 2s infinite ease-in-out; }
+  .animate-energy { animation: energy 0.5s infinite ease-in-out; }
 }
 
 button {
@@ -59,27 +120,6 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

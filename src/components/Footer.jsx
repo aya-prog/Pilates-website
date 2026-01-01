@@ -11,7 +11,7 @@ export default function Footer() {
       { name: 'Blog', href: '#' },
     ],
     Ressourcen: [
-      { name: 'FAQ', href: '#' },
+      { name: 'FAQ', href: '#faq' },
       { name: 'Fitness Guide', href: '#' },
       { name: 'Community', href: '#' },
       { name: 'Kontakt', href: '#' },
@@ -35,19 +35,36 @@ export default function Footer() {
       <div className="section-container">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-5 gap-8 pb-12 border-b border-gray-800">
-          {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-pink-600 to-purple-300 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">P</span>
+          
+          {/* Brand Bereich mit PULSIERENDEM LOGO */}
+          <div className="md:col-span-2 space-y-6">
+            <div className="flex items-center space-x-3 group cursor-pointer">
+              <div className="relative">
+                {/* Glow Effekt im Hintergrund */}
+                <div className="absolute inset-0 bg-pink-400 rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                
+                {/* Das pulsierende P (wie in der Navbar) */}
+                <div className="relative w-11 h-11 bg-gradient-to-br from-pink-600 to-purple-400 rounded-full flex items-center justify-center shadow-lg animate-logo-glow transition-transform duration-500 group-hover:rotate-[360deg]">
+                  <span className="text-white font-bold text-xl tracking-tighter">P</span>
+                </div>
               </div>
-              <span className="font-bold text-lg">Pilates Studio</span>
+
+              <div className="flex flex-col">
+                <span className="font-bold text-xl tracking-tight group-hover:text-pink-500 transition-colors">
+                  Pulse
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold leading-none mt-1">
+                  Studio
+                </span>
+              </div>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Dein moderner Pilates Studio für Kraft, Flexibilität und innere Balance.
+
+            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+              Dein modernes Pilates Studio für Kraft, Flexibilität und innere Balance. Wir begleiten dich auf deinem Weg zu einem gesunden Körper.
             </p>
+
             {/* Social Links */}
-            <div className="flex items-center space-x-4 pt-4">
+            <div className="flex items-center space-x-4 pt-2">
               {socialLinks.map((link) => {
                 const Icon = link.icon;
                 return (
@@ -55,7 +72,7 @@ export default function Footer() {
                     key={link.label}
                     href={link.href}
                     aria-label={link.label}
-                    className="w-10 h-10 bg-gray-800 hover:bg-pink-600 rounded-full flex items-center justify-center transition-colors duration-300"
+                    className="w-10 h-10 bg-gray-800 hover:bg-pink-600 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
                   >
                     <Icon size={18} />
                   </a>
@@ -64,16 +81,16 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Columns */}
+          {/* Links Spalten */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category} className="space-y-4">
-              <h4 className="font-bold text-white">{category}</h4>
+              <h4 className="font-bold text-white text-sm uppercase tracking-wider">{category}</h4>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-pink-600 transition-colors duration-300 text-sm"
+                      className="text-gray-400 hover:text-pink-500 transition-colors duration-300 text-sm"
                     >
                       {link.name}
                     </a>
@@ -83,39 +100,39 @@ export default function Footer() {
             </div>
           ))}
 
-          {/* Contact Info */}
+          {/* Kontakt Info */}
           <div className="space-y-4">
-            <h4 className="font-bold text-white">Kontakt</h4>
-            <div className="space-y-3">
+            <h4 className="font-bold text-white text-sm uppercase tracking-wider">Kontakt</h4>
+            <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <MapPin size={18} className="text-pink-600 flex-shrink-0 mt-0.5" />
-                <p className="text-gray-400 text-sm">
-                  Pilates Studio<br />
+                <MapPin size={18} className="text-pink-500 flex-shrink-0 mt-0.5" />
+                <p className="text-gray-400 text-sm leading-snug">
+                  Pulse Studio<br />
                   Musterstraße 42<br />
                   10115 Berlin
                 </p>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone size={18} className="text-pink-600 flex-shrink-0" />
-                <a href="tel:+491234567890" className="text-gray-400 hover:text-pilates-pink transition-colors text-sm">
+                <Phone size={18} className="text-pink-500 flex-shrink-0" />
+                <a href="tel:+491234567890" className="text-gray-400 hover:text-pink-500 transition-colors text-sm">
                   +49 (0) 123 456789
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail size={18} className="text-pilates-pink flex-shrink-0" />
-                <a href="mailto:info@pilatesstudio.de" className="text-gray-400 hover:text-pink-600 transition-colors text-sm">
-                  info@pilatesstudio.de
+                <Mail size={18} className="text-pink-500 flex-shrink-0" />
+                <a href="mailto:info@pilatesstudio.de" className="text-gray-400 hover:text-pink-500 transition-colors text-sm">
+                  info@pulsestudio.de
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Footer */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-gray-400 text-sm">
+        {/* Footer Bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-gray-500 text-xs">
           <p>&copy; {currentYear} Pilates Studio. Alle Rechte vorbehalten.</p>
-          <p className="text-center">
-            Designed with <span className="text-pink-600">♡</span> für deine Wellness
+          <p className="flex items-center gap-1">
+            Made with <span className="text-pink-600">♥</span> für dein Wohlbefinden
           </p>
         </div>
       </div>
