@@ -1,0 +1,45 @@
+# erster teil des codes kuemmert sich um die Existenz z.B. wieviel RAM etc. 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pilates-website
+  labels:              # <--- Diesen Block hinzufügen
+    app: pilates  
+spec:
+  replicas: 2 # Zwei Instanzen für Hochverfügbarkeit
+  selector:
+    matchLabels:
+      app: pilates
+  template:
+    metadata:
+      labels:
+        app: pilates
+    spec:
+      containers:
+      - name: website-container
+        image: pilates-web:v1
+        imagePullPolicy: Never # Wichtig für lokale Minikube-Images
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+---
+
+# Zweiter Teil des Codes ist fuer die erreichbarkeit zustaendig 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pilates-service
+spec:
+  selector:
+    app: pilates
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort # Macht die App über Minikube erreichbar
