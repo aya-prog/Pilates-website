@@ -1,13 +1,13 @@
 # erster teil des codes kuemmert sich um die Existenz z.B. wieviel RAM etc. 
-
+# Erster Teil: Deployment (Existenz der App)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pilates-website
-  labels:              # <--- Diesen Block hinzufügen
+  labels:
     app: pilates  
 spec:
-  replicas: 2 # Zwei Instanzen für Hochverfügbarkeit
+  replicas: 2 
   selector:
     matchLabels:
       app: pilates
@@ -18,8 +18,13 @@ spec:
     spec:
       containers:
       - name: website-container
-        image: pilates-web:v1
-        imagePullPolicy: Never # Wichtig für lokale Minikube-Images
+        # ÄNDERUNG 1: Hier muss jetzt dein Docker Hub Name davor!
+        # Ersetze 'dein-benutzername' durch deinen echten Docker Hub Namen
+        image: ayakhaleel/pilates-web:latest
+        
+        # ÄNDERUNG 2: Auf 'Always' ändern, damit er im Internet sucht
+        imagePullPolicy: Always 
+        
         ports:
         - containerPort: 80
         resources:
@@ -29,8 +34,7 @@ spec:
 
 ---
 
-# Zweiter Teil des Codes ist fuer die erreichbarkeit zustaendig 
-
+# Zweiter Teil: Service (Erreichbarkeit)
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,4 +46,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: NodePort # Macht die App über Minikube erreichbar
+  type: NodePort
