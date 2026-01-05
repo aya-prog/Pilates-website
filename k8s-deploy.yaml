@@ -18,8 +18,7 @@ spec:
     spec:
       containers:
       - name: website-container
-        # ÄNDERUNG 1: Hier muss jetzt dein Docker Hub Name davor!
-        # Ersetze 'dein-benutzername' durch deinen echten Docker Hub Namen
+        # Docker hub name
         image: ayakhaleel/pilates-web:latest
         
         # ÄNDERUNG 2: Auf 'Always' ändern, damit er im Internet sucht
