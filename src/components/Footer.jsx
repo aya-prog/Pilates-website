@@ -60,7 +60,7 @@ export default function Footer() {
             </div>
 
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Dein modernes Pilates Studio für Kraft, Flexibilität und innere Balance. Wir begleiten dich auf deinem Weg zu einem gesunden Körper.
+              Dein moderness Pilates Studio für Kraft, Flexibilität und innere Balance. Wir begleiten dich auf deinem Weg zu einem gesunden Körper.
             </p>
 
             {/* Social Links */}
